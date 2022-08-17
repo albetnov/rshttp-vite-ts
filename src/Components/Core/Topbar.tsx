@@ -7,7 +7,15 @@ interface TopBarParams {
 
 export default function Topbar({ toggleColorMode, colorMode }: TopBarParams) {
   return (
-    <Box py={5} px={3} backgroundColor="twitter.300">
+    <Box
+      py={5}
+      px={3}
+      backgroundColor="twitter.300"
+      display="flex"
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="space-between"
+    >
       <Heading as="h1" size="2xl" color="white">
         <Text fontWeight="bold" color="blue.900" display="inline">
           R
@@ -20,8 +28,10 @@ export default function Topbar({ toggleColorMode, colorMode }: TopBarParams) {
         <Text fontWeight="bold" display="inline" color="orange.500">
           HTTP
         </Text>
-        <Button onClick={toggleColorMode}>Toggle {colorMode === 'light' ? 'light' : 'dark'}</Button>
       </Heading>
+      <Button onClick={toggleColorMode} colorScheme="blue">
+        Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+      </Button>
     </Box>
   )
 }
