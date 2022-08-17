@@ -1,19 +1,14 @@
-import {
-  Table,
-  TableContainer,
-  Thead,
-  Tr,
-  Td,
-  Th,
-  Tbody,
-} from "@chakra-ui/react";
-import { AxiosError } from "axios";
-import React from "react";
-import CustomAlert from "../Core/CustomAlert";
+import { Table, TableContainer, Thead, Tr, Td, Th, Tbody } from '@chakra-ui/react'
+import { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
+import CustomAlert from '../Core/CustomAlert'
 
-export default function HeadersList({ result }) {
-  if (result instanceof AxiosError) {
-    return <CustomAlert msg="Network Error" type="error" />;
+interface HeadersListParam {
+  result: AxiosInstance | AxiosResponse<any, any>
+}
+
+export default function HeadersList({ result }: HeadersListParam) {
+  if (result instanceof AxiosError || result === null) {
+    return <CustomAlert msg="Network Error" type="error" />
   }
   return (
     <TableContainer>
@@ -25,14 +20,16 @@ export default function HeadersList({ result }) {
           </Tr>
         </Thead>
         <Tbody>
-          {Object.entries(result.headers).map((item) => (
-            <Tr key={item[0] + item[1]}>
-              <Td>{item[0]}</Td>
-              <Td>{item[1]}</Td>
-            </Tr>
-          ))}
+          {typeof result === 'object'
+            ? Object.entries(result.headers).map((item) => (
+                <Tr key={item[0] + item[1]}>
+                  <Td>{item[0]}</Td>
+                  <Td>{item[1]}</Td>
+                </Tr>
+              ))
+            : 'No Data'}
         </Tbody>
       </Table>
     </TableContainer>
-  );
+  )
 }

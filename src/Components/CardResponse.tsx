@@ -1,9 +1,4 @@
-import { Tabs } from '@chakra-ui/react'
-import { TabPanels } from '@chakra-ui/react'
-import { Tab } from '@chakra-ui/react'
-import { TabPanel } from '@chakra-ui/react'
-import { TabList } from '@chakra-ui/react'
-import { Box } from '@chakra-ui/react'
+import { Tabs, TabPanels, TabPanel, Tab, TabList, Box } from '@chakra-ui/react'
 import { AxiosInstance, AxiosResponse } from 'axios'
 import CustomAlert from './Core/CustomAlert'
 import CookieList from './Response/CookieList'
@@ -12,7 +7,7 @@ import PreviewRes from './Response/PreviewRes'
 import ResStatus from './Response/ResStatus'
 
 interface CardResponseParam {
-  result: null | AxiosInstance | AxiosResponse<any, any> | unknown
+  result: null | AxiosInstance | AxiosResponse<any, any>
 }
 
 export default function CardResponse({ result }: CardResponseParam) {

@@ -60,4 +60,4 @@ const ApiParser = async (
 }
 
 export { ApiParser, sanctumAuth }
-export type { AxiosBody }
+export type { AxiosBody, SanctumObject }

@@ -1,15 +1,11 @@
-import { AlertIcon } from '@chakra-ui/react'
-import { AlertTitle } from '@chakra-ui/react'
-import { Alert } from '@chakra-ui/react'
-import React from 'react'
+import { AlertIcon, AlertTitle, Alert } from '@chakra-ui/react'
 
-export default function CustomAlert({
-  msg,
-  type,
-}: {
+interface CustomAlertParams {
   msg: string
   type: 'success' | 'warning' | 'error' | 'info'
-}) {
+}
+
+export default function CustomAlert({ msg, type }: CustomAlertParams) {
   if (msg) {
     return (
       <Alert status={type} my={3} rounded="lg">

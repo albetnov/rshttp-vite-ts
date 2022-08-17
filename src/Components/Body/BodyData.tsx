@@ -1,7 +1,4 @@
-import { Text } from '@chakra-ui/react'
-import { Flex } from '@chakra-ui/react'
-import { Textarea } from '@chakra-ui/react'
-import { Box } from '@chakra-ui/react'
+import { Text, Flex, Textarea, Box } from '@chakra-ui/react'
 import { useState } from 'react'
 import { parse, stringify, YAMLParseError } from 'yaml'
 import { AxiosBody } from '../../Utils/ApiInterface'

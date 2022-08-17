@@ -1,16 +1,15 @@
-import { Select } from "@chakra-ui/react";
-import React from "react";
+import { Select } from '@chakra-ui/react'
 
-export default function TypeData({ onChange }) {
+interface TypeDataParam {
+  onChange: (s: string) => void
+}
+
+export default function TypeData({ onChange }: TypeDataParam) {
   return (
-    <Select
-      placeholder="Select Data Type"
-      maxW="sm"
-      onChange={(e) => onChange(e.target.value)}
-    >
+    <Select placeholder="Select Data Type" maxW="sm" onChange={(e) => onChange(e.target.value)}>
       <option value="json">JSON</option>
       <option value="yaml">YAML</option>
       <option value="plain/text">Plain Text</option>
     </Select>
-  );
+  )
 }

@@ -1,8 +1,11 @@
-import { Heading } from '@chakra-ui/react'
-import { Text, Box, Button } from '@chakra-ui/react'
-import React from 'react'
+import { Heading, Text, Box, Button } from '@chakra-ui/react'
 
-export default function Topbar({toggleColorMode, colorMode}) {
+interface TopBarParams {
+  toggleColorMode: () => void
+  colorMode: string
+}
+
+export default function Topbar({ toggleColorMode, colorMode }: TopBarParams) {
   return (
     <Box py={5} px={3} backgroundColor="twitter.300">
       <Heading as="h1" size="2xl" color="white">

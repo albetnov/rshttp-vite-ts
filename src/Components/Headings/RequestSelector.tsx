@@ -1,37 +1,41 @@
-import { Select } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { Select } from '@chakra-ui/react'
+import { useState } from 'react'
 
-export default function RequestSelector({ onChange }) {
-  const [selectedField, setSelectedField] = useState("gray.500");
+interface RequestSelectorParam {
+  onChange: (s: string) => void
+}
 
-  const handleSelected = (value) => {
+export default function RequestSelector({ onChange }: RequestSelectorParam) {
+  const [selectedField, setSelectedField] = useState('gray.500')
+
+  const handleSelected = (value: string) => {
     switch (value) {
-      case "get":
-        setSelectedField("green.500");
-        break;
-      case "post":
-        setSelectedField("blue.500");
-        break;
-      case "put":
-        setSelectedField("yellow.500");
-        break;
-      case "patch":
-        setSelectedField("orange.500");
-        break;
-      case "delete":
-        setSelectedField("red.500");
-        break;
+      case 'get':
+        setSelectedField('green.500')
+        break
+      case 'post':
+        setSelectedField('blue.500')
+        break
+      case 'put':
+        setSelectedField('yellow.500')
+        break
+      case 'patch':
+        setSelectedField('orange.500')
+        break
+      case 'delete':
+        setSelectedField('red.500')
+        break
       default:
-        setSelectedField("gray.500");
-        break;
+        setSelectedField('gray.500')
+        break
     }
-    onChange(value);
-  };
+    onChange(value)
+  }
 
   return (
     <Select
       placeholder="Request Method"
-      maxW={{ base: "auto", md: 200 }}
+      maxW={{ base: 'auto', md: 200 }}
       color={selectedField}
       focusBorderColor={selectedField}
       borderColor={selectedField}
@@ -43,5 +47,5 @@ export default function RequestSelector({ onChange }) {
       <option value="patch">PATCH</option>
       <option value="delete">DELETE</option>
     </Select>
-  );
+  )
 }

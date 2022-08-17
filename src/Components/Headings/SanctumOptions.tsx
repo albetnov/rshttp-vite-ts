@@ -14,9 +14,15 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { sanctumAuth } from "../../Utils/ApiInterface";
+} from '@chakra-ui/react'
+import { FormEvent, useState } from 'react'
+import { sanctumAuth, SanctumObject } from '../../Utils/ApiInterface'
+
+interface SanctumOptionsParams extends SanctumObject {
+  onUrlChanged: (s: string) => void
+  onCredCheck: (b: boolean) => void
+  onStatusChange: (b: ((b: boolean) => boolean) | boolean) => void
+}
 
 export default function SanctumOptions({
   onUrlChanged,
@@ -25,8 +31,8 @@ export default function SanctumOptions({
   url,
   status,
   credCheck,
-}) {
-  const [isLoading, setIsLoading] = useState(false);
+}: SanctumOptionsParams) {
+  const [isLoading, setIsLoading] = useState(false)
 
   const RenderBadge = () => {
     if (status) {
@@ -34,15 +40,15 @@ export default function SanctumOptions({
         <Badge ml={2} colorScheme="green">
           Enabled
         </Badge>
-      );
+      )
     }
 
     return (
       <Badge ml={2} colorScheme="red">
         Disabled
       </Badge>
-    );
-  };
+    )
+  }
 
   const RenderButton = () => {
     if (status) {
@@ -50,31 +56,31 @@ export default function SanctumOptions({
         <Button type="submit" variant="ghost" colorScheme="red">
           Disable
         </Button>
-      );
+      )
     }
     return (
       <Button type="submit" variant="ghost" colorScheme="green">
         Enable
       </Button>
-    );
-  };
+    )
+  }
 
-  const toggleSanctum = (e) => {
-    e.preventDefault();
-    onStatusChange((prevValue) => !prevValue);
-  };
+  const toggleSanctum = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    onStatusChange((prevValue) => !prevValue)
+  }
 
   const requestCsrf = async () => {
     try {
-      setIsLoading(true);
-      await sanctumAuth({ url, credCheck, status });
-      console.log("Cookie secured.");
+      setIsLoading(true)
+      await sanctumAuth({ url, credCheck, status })
+      console.log('Cookie secured.')
     } catch (err) {
-      console.log("Failed to secure cookie: " + err);
+      console.log('Failed to secure cookie: ' + err)
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   const AttemptCsrfButton = () => {
     if (isLoading) {
@@ -82,16 +88,16 @@ export default function SanctumOptions({
         <Button colorScheme="blue" isLoading loadingText="Fetching...">
           Attempt CSRF Token (Single Time)
         </Button>
-      );
+      )
     }
     return (
       <Button colorScheme="blue" onClick={requestCsrf}>
         Attempt CSRF Token (Single Time)
       </Button>
-    );
-  };
+    )
+  }
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <Box my={3}>
       <Button onClick={onOpen} colorScheme="twitter">
@@ -138,5 +144,5 @@ export default function SanctumOptions({
         </ModalContent>
       </Modal>
     </Box>
-  );
+  )
 }

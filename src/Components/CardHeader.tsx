@@ -1,5 +1,4 @@
-import { Box } from '@chakra-ui/react'
-import { Flex } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import CustomAlert from './Core/CustomAlert'
 import RequestSelector from './Headings/RequestSelector'
@@ -17,7 +16,7 @@ interface CardHeaderType {
     credCheck: boolean
     urlHandler: (s: string) => void
     credCheckHandler: (b: boolean) => void
-    statusHandler: (b: boolean) => void
+    statusHandler: (b: boolean | ((b: boolean) => boolean)) => void
   }
 }
 

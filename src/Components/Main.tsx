@@ -1,6 +1,6 @@
 import type { AxiosBody } from '../Utils/ApiInterface'
 import { Container, Box, useColorMode } from '@chakra-ui/react'
-import { AxiosInstance, AxiosResponse } from 'axios'
+import { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
 import { useState } from 'react'
 import { ApiParser } from '../Utils/ApiInterface'
 import CardBody from './CardBody'
@@ -16,9 +16,7 @@ export default function Main() {
   const [header, setHeader] = useState('')
   const [body, setBody] = useState<AxiosBody | null>(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [result, setResult] = useState<null | AxiosInstance | AxiosResponse<any, any> | unknown>(
-    null
-  )
+  const [result, setResult] = useState<null | AxiosInstance | AxiosResponse<any, any>>(null)
 
   const [sanctumUrl, setSanctumUrl] = useState('http://localhost:8000/sanctum/csrf-cookie')
   const [sanctumCredCheck, setSanctumCredCheck] = useState(true)
@@ -39,7 +37,7 @@ export default function Main() {
       const result = await ApiParser(value, method, header, body, sanctum)
       console.log(result)
       setResult(result)
-    } catch (e) {
+    } catch (e: any) {
       console.log(e)
       setResult(e)
     } finally {

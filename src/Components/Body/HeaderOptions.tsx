@@ -1,27 +1,29 @@
-import { Text } from "@chakra-ui/react";
-import { Textarea } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
-import React, { useState } from "react";
-import CustomAlert from "../Core/CustomAlert";
+import { Text, Textarea, Box } from '@chakra-ui/react'
+import { useState } from 'react'
+import CustomAlert from '../Core/CustomAlert'
 
-export default function HeaderOptions({ onChange }) {
-  const [header, setHeader] = useState("");
-  const [error, setError] = useState("");
-  const sampleValue = `"Authorization": "bearer <token>"`;
+interface HeaderOptionsParam {
+  onChange: (s: string) => void
+}
 
-  const onHeaderChange = (value) => {
-    setHeader(value);
-    if (header === "") {
-      return setError("");
+export default function HeaderOptions({ onChange }: HeaderOptionsParam) {
+  const [header, setHeader] = useState('')
+  const [error, setError] = useState('')
+  const sampleValue = `"Authorization": "bearer <token>"`
+
+  const onHeaderChange = (value: string) => {
+    setHeader(value)
+    if (header === '') {
+      return setError('')
     }
     try {
-      const data = JSON.parse(`{${value}}`);
-      setError("");
-      onChange(data);
+      const data = JSON.parse(`{${value}}`)
+      setError('')
+      onChange(data)
     } catch (err) {
-      setError("Invalid JSON Format");
+      setError('Invalid JSON Format')
     }
-  };
+  }
 
   return (
     <Box>
@@ -37,5 +39,5 @@ export default function HeaderOptions({ onChange }) {
       />
       <CustomAlert msg={error} type="error" />
     </Box>
-  );
+  )
 }
