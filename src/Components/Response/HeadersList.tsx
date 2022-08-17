@@ -1,9 +1,10 @@
 import { Table, TableContainer, Thead, Tr, Td, Th, Tbody } from '@chakra-ui/react'
-import { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
+import { AxiosError } from 'axios'
+import { AxiosResponse } from '../../Utils/ApiInterface'
 import CustomAlert from '../Core/CustomAlert'
 
 interface HeadersListParam {
-  result: AxiosInstance | AxiosResponse<any, any>
+  result: AxiosResponse
 }
 
 export default function HeadersList({ result }: HeadersListParam) {

@@ -16,6 +16,17 @@ interface AxiosBody {
   [index: string]: string
 }
 
+interface AxiosResponse {
+  data: object | string
+  headers: {
+    'content-type': string
+  }
+  code?: string
+  request?: {
+    responseURL: string
+  }
+}
+
 const sanctumAuth = (sanctum: SanctumObject) => {
   client = axios.create({
     withCredentials: sanctum.credCheck,
@@ -60,4 +71,4 @@ const ApiParser = async (
 }
 
 export { ApiParser, sanctumAuth }
-export type { AxiosBody, SanctumObject }
+export type { AxiosBody, SanctumObject, AxiosResponse }
